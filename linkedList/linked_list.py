@@ -40,41 +40,53 @@ class LinkedList:
         Удаление всех узлов по конкретному значению - флажок all=True.
             
         """
-        # if self.head.value == val:
-        #     deleted_node = self.head 
-        #     self.head = self.head.next
-        #     deleted_node.next = None 
-
-        deleted_nodes = []
-        fake_head = Node(None)
-        # fake_head.next = self.head
         node = self.head
-        prev = fake_head
+        prev = Node(None)
         while node:
-            # TODO: дописать данный метод
+            next_node = node.next
             if node.value == val:
-                prev.next = node.next
                 node.next = None
+                prev.next = next_node
+                if node is self.head:
+                    self.head = next_node
+
+                if node is self.tail:
+                    self.tail = prev if self.head else None
+
                 if not all:
                     return
-            else:
-                prev = node
 
-            node = prev.next
+            prev = node
+            node = next_node
+
+        return
 
     def clean(self):
-        """Метод очистки всего содержимого (создание пустого списка)."""
-        pass
+        """Метод очистки всего содержимого (создание пустого списка).
+        
+        """
+        self.head = None
+        self.tail = None
 
-    def find_all(self):
+    def find_all(self, val):
         """Метод поиска всех узлов по конкретному значению,
-            возвращается стандартный питоновский список найденных узлов.
+        возвращается стандартный питоновский список найденных узлов.
             
         """
-        pass
+        result = []
+        node = self.head
+        while node:
+            if node.value == val:
+                result.append(node)
+
+            node = node.next
+
+        return result
 
     def len(self):
-        """Метод вычисления текущей длины списка."""
+        """Метод вычисления текущей длины списка.
+        
+        """
         result = 0
         node = self.head
         while node:
@@ -85,5 +97,26 @@ class LinkedList:
 
     def insert(self, after_node, new_node):
         """Метод вставки узла newNode после заданного узла after_node. 
-            Если afterNode = None, добавьте новый элемент первым в списке."""
-        pass
+        Если afterNode = None, добавьте новый элемент первым в списке.
+            
+        """
+        if not after_node:
+            new_node.next = self.head
+            self.head = new_node
+            if not self.tail:
+                self.tail = new_node
+
+        if after_node:
+            node = self.head
+            while node:
+                if node == after_node:
+                    new_node.next = node.next
+                    node.next = new_node
+                    if node == self.tail:
+                        self.tail = new_node
+
+                    return
+
+                node = node.next
+
+        return
