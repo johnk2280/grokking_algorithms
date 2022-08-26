@@ -61,8 +61,30 @@ class LinkedList2:
         
         return i
         
-    def delete(self, val, all=False) -> None:
-        pass
+    def delete(self, val, all=False) -> None:   
+        #if self.head:
+         #   fake_head = Node(None)
+          #  self.head.prev = fake_head
+            
+        node = self.head
+        # TODO: проходят не все тесты   
+        while node:
+            if node.value == val:
+                if node.prev is None:
+                    self.head = node.next
+                else:
+                    node.prev.next = node.next
+                    
+                node.next.prev = node.prev
+                if node is self.head:
+                    self.head = node.next
+                    
+                if not all:
+                    return
+            
+            node = node.next
+
+                
         
     def insert(self, after_node, new_node) -> None:
         """Добавьте в класс LinkedList2 метод вставки узла после заданного узла
@@ -74,4 +96,39 @@ class LinkedList2:
         pass
         
     def add_in_head(self, node: Node) -> None:
-        pass
+        if self.head:
+            node.next = self.head
+            self.head.prev = node
+        else:
+            self.tail = node
+        
+        self.head = node
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
