@@ -22,17 +22,35 @@ class LinkedList2:
             
         self.tail = node
         
-    def print_all_nodes(self) -> None:
-        pass
+    def print_all_nodes(self, reverse=False) -> None:
+        node = self.head if not reverse else self.tail
+        while node:
+            print(node.value)
+            node = node.next if not reverse else node.prev
+  
         
-    def find(self, val) -> Node:
-        pass
+    def find(self, val, reverse=False) -> Node:
+        node = self.head if not reverse else self.tail
+        while node:
+            if node.value == val:
+                return node
+            
+            node = node.next if not reverse else node.prev
         
-    def find_all(self, val) -> List[Node]:
-        pass
+    def find_all(self, val, reverse=False) -> List[Node]:
+        node = self.head if not reverse else self.tail
+        result = []
+        while node:
+            if node.value == val:
+                result.append(node)
+            
+            node = node.next if not reverse else node.prev
+        
+        return node
         
     def clean(self) -> None:
-        pass
+        self.head = None
+        self.tail = None
         
     def len(self) -> int:
         node = self.head
