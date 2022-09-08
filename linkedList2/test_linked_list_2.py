@@ -205,7 +205,7 @@ def test_delete_one_node_from_empty_list():
     assert ll2.tail is None
 
 
-def test_delete_one_node_from_not_emty_list():
+def test_delete_one_node_from_not_empty_list():
     ll2 = LinkedList2()
     a = Node(1)
     b = Node('123')
