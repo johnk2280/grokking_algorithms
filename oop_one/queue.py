@@ -35,7 +35,7 @@ class Queue(GetMixin, ParentList):
         super(Queue, self).__init__()
 
     # ===Команды================
-    def put(self, item) -> None:
+    def put_right(self, item) -> None:
         """
         Постусловие: размер очереди увеличен на 1
         :param item:
