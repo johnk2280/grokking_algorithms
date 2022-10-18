@@ -16,19 +16,103 @@ class ParentList(abc.ABC):
         self.tail = None
         self.current = self.head
 
-    def put_right(self, item):
+    def put_right(self, item) -> None:
+        pass
+
+    def put_left(self, item) -> None:
+        pass
+
+    def clear(self) -> None:
         pass
 
     def size(self) -> int:
         pass
 
 
-class GetMixin(abc.ABC):
+class LeftItemMixin(abc.ABC):
 
-    def get(self) -> Any:
+    def get_left(self) -> Any:
+        pass
+
+    def remove_left(self) -> None:
         pass
 
 
-class PutLeftMixin(abc.ABC):
+class RightItemMixin(abc.ABC):
+
+    def get_right(self) -> Any:
+        pass
+
+    def remove_right(self) -> None:
+        pass
+
+
+class Queue(LeftItemMixin, RightItemMixin, ParentList):
+
+    def __init__(self):
+        """
+        Постусловие: создана новая очередь.
+        """
+        super(Queue, self).__init__()
+
+    # ===Команды================
+    def clear(self) -> None:
+        """
+        Постусловие: очередь пуста (создана новая очередь)
+        :return:
+        """
+        pass
+
+    def put_right(self, item) -> None:
+        """
+        Постусловие: элемент вставлен в хвост
+        :param item:
+        :return:
+        """
+        pass
+
+    def remove_right(self) -> None:
+        """
+        Предусловие: очередь не пустая.
+        Постусловие: элемент удален из хвоста.
+        :param item:
+        :return:
+        """
+        pass
+
     def put_left(self, item) -> None:
+        """
+        Постусловие: элемент вставлен в голову
+        :param item:
+        :return:
+        """
+        pass
+
+    def remove_left(self) -> None:
+        """
+        Предусловие: очередь не пустая.
+        Постусловие: элемент удален из головы.
+        :param item:
+        :return:
+        """
+        pass
+
+    def get_left(self) -> Any:
+        """
+        Предусловие: список не пустой.
+        Постусловие: получен элемент из хвоста очереди.
+        :return:
+        """
+        pass
+
+    def get_right(self) -> Any:
+        """
+        Предусловие: список не пустой.
+        Постусловие: получен элемент из головы очереди.
+        :return:
+        """
+        pass
+
+    # ===Запросы================
+    def size(self) -> int:
         pass
