@@ -91,6 +91,12 @@ class AbstractHashTable(abc.ABC):
 
     # ==== Запросы ====
     @abc.abstractmethod
+    def size(self) -> int:
+        """
+        :return: количество элементов в таблице.
+        """
+
+    @abc.abstractmethod
     def find(self, value: Any) -> bool:
         """
         Постусловие: возвращено булево значение.
